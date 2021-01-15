@@ -45,43 +45,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                addMarker(mMap);
             }
         });
         btn_Hibrido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                addMarker(mMap);
             }
         });
         btn_Normal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                addMarker(mMap);
             }
         });
         btn_Terreno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                addMarker(mMap);
             }
         });
 
 
-       /* public void addMarker (GoogleMap googleMap){
+
+
+    }
+
+    public void addMarker (GoogleMap googleMap){
 
 
 
-            mMap = googleMap;
-            final LatLng punto1 = new LatLng(42.6036635,-5.6124109);
-            mMap.addMarker(new MarkerOptions().position(punto1).title("León").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE) ));
+        mMap = googleMap;
+        final LatLng punto1 = new LatLng(42.6036635,-5.6124109);
+        mMap.addMarker(new MarkerOptions().position(punto1).title("León").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE) ));
 
-            final LatLng punto2 = new LatLng(40.4167, -3.70256);
-            mMap.addMarker(new MarkerOptions().position(punto2).title("Madrid"));
+        final LatLng punto2 = new LatLng(40.4167, -3.70256);
+        mMap.addMarker(new MarkerOptions().position(punto2).title("Madrid"));
 
-            final LatLng punto3 = new LatLng(40.4167, -3.50256);
-            mMap.addMarker(new MarkerOptions().position(punto3).title("Madrid"));
-
-        }*/
+        final LatLng punto3 = new LatLng(40.4167, -3.50256);
+        mMap.addMarker(new MarkerOptions().position(punto3).title("Madrid"));
 
     }
 
