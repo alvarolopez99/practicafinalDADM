@@ -13,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -64,6 +65,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             }
         });
+
+
+       /* public void addMarker (GoogleMap googleMap){
+
+
+
+            mMap = googleMap;
+            final LatLng punto1 = new LatLng(42.6036635,-5.6124109);
+            mMap.addMarker(new MarkerOptions().position(punto1).title("León").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE) ));
+
+            final LatLng punto2 = new LatLng(40.4167, -3.70256);
+            mMap.addMarker(new MarkerOptions().position(punto2).title("Madrid"));
+
+            final LatLng punto3 = new LatLng(40.4167, -3.50256);
+            mMap.addMarker(new MarkerOptions().position(punto3).title("Madrid"));
+
+        }*/
+
     }
 
     /**
