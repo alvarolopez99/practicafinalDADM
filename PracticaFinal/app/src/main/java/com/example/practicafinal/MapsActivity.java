@@ -4,6 +4,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -20,10 +21,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Button btn_Satelite;
-    private Button btn_Hibrido;
-    private Button btn_Normal;
-    private Button btn_Terreno;
+
+    private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno;
+
+    private Button btn_Twitter, btn_Facebook, btn_Whatsapp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btn_Hibrido = (Button) findViewById(R.id.id_Hibrido);
         btn_Normal = (Button) findViewById(R.id.id_Normal);
         btn_Terreno = (Button) findViewById(R.id.id_Terreno);
+
+        btn_Twitter = (Button) findViewById(R.id.id_Twitter);
+        btn_Facebook = (Button) findViewById(R.id.id_Facebook);
+        btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp);
+
+
 
         btn_Satelite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +79,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
+        btn_Twitter.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡Comparte tu experiencia en Twitter!");
+                intent.setPackage("com.twitter.android");
+                startActivity(Intent.createChooser(intent, "Compartir..."));
+            }
+        });
+
+        btn_Facebook.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡Comparte tu experiencia en Facebook!");
+                intent.setPackage("com.facebook.katana");
+                startActivity(Intent.createChooser(intent, "Compartir..."));
+            }
+        });
+
+        btn_Whatsapp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡Comparte tu experiencia en WhatsApp!");
+                intent.setPackage("com.whatsapp");
+                startActivity(Intent.createChooser(intent, "Compartir..."));
+            }
+        });
 
 
     }
