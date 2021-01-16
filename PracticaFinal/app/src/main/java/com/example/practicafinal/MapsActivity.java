@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -172,10 +178,84 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
+
+
+/*
         // Add a marker in Sydney and move the camera
         LatLng madrid = new LatLng(40.4167, -3.70256);
         mMap.addMarker(new MarkerOptions().position(madrid).title("Marcador en Madrid"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(madrid));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(madrid));*/
+
+
+
+
+
+
+
+        // Add a marker in Sydney and move the camera
+
+        //    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        /////////////
+        LatLng center = null;
+        ArrayList<LatLng> points = null;
+        PolylineOptions lineOptions = null;
+
+        // setUpMapIfNeeded();
+
+        // recorriendo todas las rutas
+        for(int i=0;i<Utilidades.routes.size();i++){
+            points = new ArrayList<LatLng>();
+            lineOptions = new PolylineOptions();
+
+            // Obteniendo el detalle de la ruta
+            List<HashMap<String, String>> path = Utilidades.routes.get(i);
+
+            // Obteniendo todos los puntos y/o coordenadas de la ruta
+            for(int j=0;j<path.size();j++){
+                HashMap<String,String> point = path.get(j);
+
+                double lat = Double.parseDouble(point.get("lat"));
+                double lng = Double.parseDouble(point.get("lng"));
+                LatLng position = new LatLng(lat, lng);
+
+                if (center == null) {
+                    //Obtengo la 1ra coordenada para centrar el mapa en la misma.
+                    center = new LatLng(lat, lng);
+                }
+                points.add(position);
+            }
+
+            // Agregamos todos los puntos en la ruta al objeto LineOptions
+            lineOptions.addAll(points);
+            //Definimos el grosor de las Polilíneas
+            lineOptions.width(2);
+            //Definimos el color de la Polilíneas
+            lineOptions.color(Color.BLUE);
+        }
+
+        // Dibujamos las Polilineas en el Google Map para cada ruta
+        mMap.addPolyline(lineOptions);
+
+        LatLng origen = new LatLng(Utilidades.coordenadas.getLatitudInicial(), Utilidades.coordenadas.getLongitudInicial());
+        mMap.addMarker(new MarkerOptions().position(origen).title("Lat: "+Utilidades.coordenadas.getLatitudInicial()+" - Long: "+Utilidades.coordenadas.getLongitudInicial()));
+
+        LatLng destino = new LatLng(Utilidades.coordenadas.getLatitudFinal(), Utilidades.coordenadas.getLongitudFinal());
+        mMap.addMarker(new MarkerOptions().position(destino).title("Lat: "+Utilidades.coordenadas.getLatitudFinal()+" - Long: "+Utilidades.coordenadas.getLongitudFinal()));
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(center, 15));
+        /////////////
 
     }
+
+
+
+
+
+
+
+
+
+
+
 }
