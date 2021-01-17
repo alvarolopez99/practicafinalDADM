@@ -270,17 +270,19 @@ view.setWebViewClient(new WebViewClient(){
             case R.id.btn_openMap:
 
 
-                Utilidades.coordenadas.setLatitudInicial(Double.valueOf(txtLatInicio));
+              /*  Utilidades.coordenadas.setLatitudInicial(Double.valueOf(txtLatInicio));
                 Utilidades.coordenadas.setLongitudInicial(Double.valueOf(txtLongInicio));
                 Utilidades.coordenadas.setLatitudFinal(Double.valueOf(txtLatFinal));
                 Utilidades.coordenadas.setLongitudFinal(Double.valueOf(txtLongFinal));
 
                 webServiceObtenerRuta(txtLatInicio,txtLongInicio,txtLatFinal,txtLongFinal);
+*/
 
-                Intent miIntent=new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(miIntent);
-                // mapa = new Intent(getApplicationContext(), MapsActivity.class);
-                //startActivity(mapa);
+               // Intent miIntent=new Intent(MainActivity.this, MapsActivity.class);
+               // startActivity(miIntent);
+
+                Intent mapa = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(mapa);
                 break;
 
             case R.id.escaner:
