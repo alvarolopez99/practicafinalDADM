@@ -44,7 +44,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lat = 0.0;
     double lng = 0.0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +59,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btn_Normal = (Button) findViewById(R.id.id_Normal);
         btn_Terreno = (Button) findViewById(R.id.id_Terreno);
 
-        //btn_Twitter = (Button) findViewById(R.id.id_Twitter);
-        //btn_Facebook = (Button) findViewById(R.id.id_Facebook);
-        //btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp);
+        btn_Twitter = (Button) findViewById(R.id.id_Twitter);
+        btn_Facebook = (Button) findViewById(R.id.id_Facebook);
+        btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp);
 
         btn_Satelite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        /*btn_Twitter.setOnClickListener(new View.OnClickListener() {
+        btn_Twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -124,7 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 intent.setPackage("com.whatsapp");
                 startActivity(Intent.createChooser(intent, "Compartir..."));
             }
-        });*/
+        });
     }
 
     public void addMarker(GoogleMap googleMap) {
