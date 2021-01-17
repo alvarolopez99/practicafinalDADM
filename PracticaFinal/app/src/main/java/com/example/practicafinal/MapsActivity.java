@@ -5,8 +5,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+
 import android.content.Context;
 import android.content.Intent;
+
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -36,6 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
 
+
     private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno;
 
     private Button btn_Twitter, btn_Facebook, btn_Whatsapp;
@@ -43,6 +46,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
+
+  //  private Button btn_Satelite;
+  //  private Button btn_Hibrido;
+  //  private Button btn_Normal;
+  //  private Button btn_Terreno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +67,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btn_Normal = (Button) findViewById(R.id.id_Normal);
         btn_Terreno = (Button) findViewById(R.id.id_Terreno);
 
-        btn_Twitter = (Button) findViewById(R.id.id_Twitter);
-        btn_Facebook = (Button) findViewById(R.id.id_Facebook);
-        btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp);
+       // btn_Twitter = (Button) findViewById(R.id.id_Twitter);
+       // btn_Facebook = (Button) findViewById(R.id.id_Facebook);
+       // btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp);
 
         btn_Satelite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +99,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 addMarker(mMap);
             }
         });
+
+
 
         btn_Twitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(Intent.createChooser(intent, "Compartir..."));
             }
         });
+
     }
 
     public void addMarker(GoogleMap googleMap) {
