@@ -4,20 +4,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 /*
 import com.android.volley.Request;
@@ -27,17 +28,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;*/
-import com.google.android.gms.maps.model.LatLng;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, SensorEventListener{
 
     private Button Escaner;
     private TextView textView;
@@ -48,6 +40,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String txtLongInicio ="-75.666736";
     String txtLatFinal ="4.540026";
     String txtLongFinal ="-75.665479";
+
+    //Podo
+    private Sensor contadorPasos;
+    private SensorManager manejadorSensor;
+    private TextView Texto_Pasos;
+    private boolean existeSensor;
+    int N_Pasos = 0;
 
    // JsonObjectRequest jsonObjectRequest;
    // RequestQueue request;
@@ -60,13 +59,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //view.getSettings().setJavaScriptEnabled(true);
         btn_openMap = (Button) findViewById(R.id.btn_openMap);
         Escaner = findViewById(R.id.escaner);
-        textView = findViewById(R.id.textView);
+        textView = findViewById(R.id.id_Texto_Pasos);
         btn_openMap.setOnClickListener(this);
         Escaner.setOnClickListener(this);
         view = (WebView) findViewById(R.id.web);
 
 
+        Texto_Pasos = findViewById(R.id.id_Texto_Pasos);
 
+        manejadorSensor = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+
+        if(manejadorSensor.getDefaultSensor((Sensor.TYPE_STEP_COUNTER)) != null) {
+            contadorPasos = manejadorSensor.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            Texto_Pasos.setText("Sensor de pasos soportado");
+
+        }
+        else {
+            Texto_Pasos.setText("Sensor de pasos no soportado");
+        }
+
+
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if(event.sensor == contadorPasos) {
+            N_Pasos = (int) event.values[0];
+            Texto_Pasos.setText(String.valueOf(N_Pasos));
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(manejadorSensor.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null){
+            manejadorSensor.registerListener(this, contadorPasos, manejadorSensor.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(manejadorSensor.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null){
+            manejadorSensor.unregisterListener(this, contadorPasos);
+        }
     }
 
 
