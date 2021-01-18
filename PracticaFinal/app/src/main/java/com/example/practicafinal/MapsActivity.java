@@ -5,10 +5,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+<<<<<<< HEAD
 
 import android.content.Context;
 import android.content.Intent;
 
+=======
+>>>>>>> parent of ed76390... Compartir en Redes Sociales
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -37,6 +40,7 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+<<<<<<< HEAD
 
 
     private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno;
@@ -51,6 +55,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   //  private Button btn_Hibrido;
   //  private Button btn_Normal;
   //  private Button btn_Terreno;
+=======
+    private Button btn_Satelite;
+    private Button btn_Hibrido;
+    private Button btn_Normal;
+    private Button btn_Terreno;
+>>>>>>> parent of ed76390... Compartir en Redes Sociales
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +77,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btn_Normal = (Button) findViewById(R.id.id_Normal);
         btn_Terreno = (Button) findViewById(R.id.id_Terreno);
 
+<<<<<<< HEAD
        // btn_Twitter = (Button) findViewById(R.id.id_Twitter);
        // btn_Facebook = (Button) findViewById(R.id.id_Facebook);
        // btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp);
 
+=======
+>>>>>>> parent of ed76390... Compartir en Redes Sociales
         btn_Satelite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
+<<<<<<< HEAD
 
         btn_Twitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +148,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(Intent.createChooser(intent, "Compartir..."));
             }
         });
+=======
+>>>>>>> parent of ed76390... Compartir en Redes Sociales
 
     }
 
