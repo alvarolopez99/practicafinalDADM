@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">PracticaFinal</string>
     <string name="title_activity_maps">Map</string>
+
+
+    <string-array name="paises">
+        <item>España</item>
+    </string-array>
+
+    <string-array name="ciudades">
+        <item>Madrid</item>
+    </string-array>
+
+    <string-array name="rutas">
+        <item>Demo</item>
+    </string-array>
+
 </resources>

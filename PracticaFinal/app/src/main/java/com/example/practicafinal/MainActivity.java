@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textView;
     WebView view;
     Button btn_openMap;
+    Button iniciarSesion;
 
     String txtLatInicio ="4.543986";
     String txtLongInicio ="-75.666736";
@@ -57,16 +58,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //view.getSettings().setJavaScriptEnabled(true);
+
         btn_openMap = (Button) findViewById(R.id.btn_openMap);
+        iniciarSesion = (Button) findViewById(R.id.inicioSesion);
         Escaner = findViewById(R.id.escaner);
-        textView = findViewById(R.id.id_Texto_Pasos);
+
+        iniciarSesion.setOnClickListener(this);
         btn_openMap.setOnClickListener(this);
         Escaner.setOnClickListener(this);
+
         view = (WebView) findViewById(R.id.web);
 
-
         Texto_Pasos = findViewById(R.id.id_Texto_Pasos);
-
+        textView = findViewById(R.id.id_Texto_Pasos);
         manejadorSensor = (SensorManager) getSystemService(SENSOR_SERVICE);
 
 
@@ -327,6 +331,11 @@ view.setWebViewClient(new WebViewClient(){
                 Intent mapa = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(mapa);
                 break;
+
+            case R.id.inicioSesion:
+                Intent Selector = new Intent(this,Selector.class);    //Actividades
+                startActivity(Selector);
+
 
             case R.id.escaner:
                 new IntentIntegrator(MainActivity.this).initiateScan();
