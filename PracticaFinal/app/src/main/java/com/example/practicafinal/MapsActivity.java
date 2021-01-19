@@ -45,8 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public static GoogleMap mMap;
 
-    static Double[] ubicacionesRuta1 = {40.0,-5.0, 40.0,-4.0, 40.0,-3.0, 40.0,-2.0, 40.0,-1.0};
-    public static String [] ubicaciones = {"A","B","C","D","E","F"};
+    static Double[] ubicacionesRuta1 = {40.41736, -3.68303, 40.41924, -3.69337, 40.41693, -3.70351, 40.41820, -3.70947, 40.41718, -3.71441};
+    public static String [] ubicaciones = {"A","B","C","D","E"};
     public int numUbicacion=0;
     private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno,btn_Back;
 
