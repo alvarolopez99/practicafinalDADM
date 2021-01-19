@@ -4,46 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".showPhoto">
 
-    <Button
-        android:id="@+id/id_WhatsApp2"
-        android:background="@drawable/whatsapp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/id_Twitter2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="120dp"
-        android:background="@drawable/twitter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/id_WhatsApp2"
-        app:layout_constraintStart_toEndOf="@+id/id_Facebook2" />
-
-    <Button
+    <ImageView
         android:id="@+id/id_Facebook2"
         android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="91dp"
-        android:layout_marginBottom="120dp"
-        android:background="@drawable/facebook"
+        android:layout_height="76dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginBottom="104dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/facebook" />
+
+    <ImageView
+        android:id="@+id/id_Twitter2"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="47dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="108dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/id_Whatsapp2"
+        app:layout_constraintStart_toEndOf="@+id/id_Facebook2"
+        app:srcCompat="@drawable/twitter" />
 
     <ImageView
         android:id="@+id/imageViewer"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="141dp"
@@ -56,14 +45,41 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
+    <ImageView
+        android:id="@+id/id_Whatsapp2"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="51dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/whatsapp" />
+
+    <ImageView
         android:id="@+id/menubtn"
+        android:layout_width="89dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="162dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="43dp"
+        android:src="@drawable/buttonshort"
+        android:text="Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginBottom="52dp"
+        android:fontFamily="@font/pt_sans"
         android:text="Menu"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

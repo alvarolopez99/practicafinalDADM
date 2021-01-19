@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
-
+/*
 public class showPhoto extends AppCompatActivity {
 
     ImageView photo;
@@ -89,4 +89,4 @@ public class showPhoto extends AppCompatActivity {
 
     }
 
-}
+}*/
