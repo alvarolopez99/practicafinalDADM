@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:visibility="visible"
-    tools:context=".FragmentAnadir">
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="363dp"
@@ -16,7 +15,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:backgroundTint="#FFFFFF">
 
             <ImageButton
                 android:id="@+id/salirescoger"
@@ -37,6 +37,8 @@
                 android:ems="10"
                 android:hint="Introduzca su nombre"
                 android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,6 +49,7 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
                 android:text="Creación de perfil"
+                android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -58,6 +61,7 @@
                 android:layout_marginStart="112dp"
                 android:layout_marginTop="196dp"
                 android:src="@drawable/mujerxml"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,6 +72,7 @@
                 android:layout_marginStart="184dp"
                 android:layout_marginTop="196dp"
                 android:src="@drawable/hombrexml"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,6 +83,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="396dp"
                 android:text="No se ha seleccionado ninguna foto de perfil"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +97,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="396dp"
                 android:text="Ya existe un usuario con ese nombre"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +111,7 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="396dp"
                 android:text="No se ha escogido un nombre de usuario"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,6 +125,7 @@
                 android:layout_marginStart="76dp"
                 android:layout_marginTop="152dp"
                 android:text="Perfiles por defecto"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -128,6 +137,7 @@
                 android:layout_marginStart="92dp"
                 android:layout_marginTop="276dp"
                 android:src="@drawable/tomarfotoxml"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -138,6 +148,7 @@
                 android:layout_marginStart="96dp"
                 android:layout_marginTop="336dp"
                 android:src="@drawable/finalizarxml"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

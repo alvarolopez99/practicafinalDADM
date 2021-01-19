@@ -36,6 +36,7 @@
                 android:layout_height="71dp"
                 android:layout_marginStart="328dp"
                 android:layout_marginTop="28dp"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/salirxml" />
@@ -47,6 +48,7 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="672dp"
                 android:text="Has seleccionado el perfil: alvaro"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +61,7 @@
                 android:layout_height="44dp"
                 android:layout_marginStart="208dp"
                 android:layout_marginTop="568dp"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/seleccionarxml" />
@@ -69,6 +72,7 @@
                 android:layout_height="36dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="572dp"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/anadirxml" />
@@ -79,6 +83,7 @@
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="624dp"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/modificarxml" />
@@ -89,6 +94,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="208dp"
                 android:layout_marginTop="620dp"
+                android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/eliminarxml" />
