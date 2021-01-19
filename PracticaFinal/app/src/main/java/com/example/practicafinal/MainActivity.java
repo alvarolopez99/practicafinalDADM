@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import android.hardware.Sensor;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_openMap;
     Button iniciarSesion;
     Button btn_Temperatura;
+    Button btn_Perfiles;
 
     String txtLatInicio ="4.543986";
     String txtLongInicio ="-75.666736";
@@ -53,8 +55,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //AR
     private Button btn_ar;
 
-   // JsonObjectRequest jsonObjectRequest;
-   // RequestQueue request;
+    //Variables para perfiles
+    public static String nombreUsuario = "Anónimo";
+    public static int maxAciertos;
+    public static int numPartidas;
+    public Item itemseleccionado;
+    public static String imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_ar = (Button) findViewById(R.id.arbutton);
         btn_Temperatura = (Button) findViewById(R.id.btn_Temperatura);
         iniciarSesion = (Button) findViewById(R.id.inicioSesion);
+        btn_Perfiles = (Button) findViewById(R.id.btn_Perfiles);
         Escaner = findViewById(R.id.escaner);
 
         iniciarSesion.setOnClickListener(this);
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Escaner.setOnClickListener(this);
         btn_ar.setOnClickListener(this);
         btn_Temperatura.setOnClickListener(this);
+        btn_Perfiles.setOnClickListener(this);
 
         view = (WebView) findViewById(R.id.web);
 
@@ -125,10 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-
 /*
-
 
     private void webServiceObtenerRuta(String latitudInicial, String longitudInicial, String latitudFinal, String longitudFinal) {
 
@@ -238,10 +243,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return Utilidades.routes;
     }
 
-*/
-
-
-/*
     private List<LatLng> decodePoly(String encoded) {
 
         List<LatLng> poly = new ArrayList<LatLng>();
@@ -275,22 +276,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return poly;
     }
-
-
-
-
 */
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -359,6 +345,39 @@ view.setWebViewClient(new WebViewClient(){
                 Intent temp = new Intent(this, Temperature.class);
                 startActivity(temp);
                 break;
+            case R.id.btn_Perfiles:
+                Intent perfiles = new Intent(this, Perfiles.class);
+                startActivity(perfiles);
+                break;
         }
     }
+
+    public void setNombreUsuario(String s){
+        nombreUsuario = s;
+    }
+
+    public String getNombreUsuario(){
+        return nombreUsuario;
+    }
+
+
+    public static int getMaxAciertos() {
+        return maxAciertos;
+    }
+
+    public static void setMaxAciertos(int maxAciertos) {
+        MainActivity.maxAciertos = maxAciertos;
+    }
+
+    public static int getNumPartidas() {
+        return numPartidas;
+    }
+
+    public static void setNumPartidas(int numPartidas) {
+        MainActivity.numPartidas = numPartidas;
+    }
+
+    public String getImagen() { return imagen;}
+
+    public void setImagen(String bm) { imagen = bm; }
 }

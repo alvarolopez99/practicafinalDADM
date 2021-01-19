@@ -11,6 +11,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.camera2" android:required="true" />
     <!--
  Limits app visibility in the Google Play Store to ARCore supported devices
      (https://developers.google.com/ar/discover/supported-devices).
@@ -32,11 +35,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PracticaFinal">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.prac1.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
+
         <activity android:name=".showPhoto"></activity>
         <activity android:name=".Ruta" />
         <activity android:name=".Selector" />
         <activity android:name=".MenuPrincipal" />
+        <activity android:name=".Temperature"/>
         <activity android:name=".ar" />
+        <activity android:name=".Perfiles"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

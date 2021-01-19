@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:scaleType="fitXY"
+    tools:context=".Perfiles">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/idListView_perfiles"
+                android:layout_width="385dp"
+                android:layout_height="423dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="128dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+            </ListView>
+
+            <ImageButton
+                android:id="@+id/idImageButton_salirperfil"
+                android:layout_width="67dp"
+                android:layout_height="71dp"
+                android:layout_marginStart="328dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/salirxml" />
+
+            <TextView
+                android:id="@+id/placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="672dp"
+                android:text="Has seleccionado el perfil: alvaro"
+                android:textSize="24sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/idButton_seleccionar"
+                android:layout_width="177dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="208dp"
+                android:layout_marginTop="568dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/seleccionarxml" />
+
+            <ImageButton
+                android:id="@+id/idButton_añadir"
+                android:layout_width="174dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="572dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/anadirxml" />
+
+            <ImageButton
+                android:id="@+id/idButton_modificar"
+                android:layout_width="175dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="624dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/modificarxml" />
+
+            <ImageButton
+                android:id="@+id/idButton_eliminar"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="208dp"
+                android:layout_marginTop="620dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/eliminarxml" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
