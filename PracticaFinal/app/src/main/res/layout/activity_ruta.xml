@@ -19,21 +19,21 @@
 
     <Button
         android:id="@+id/openMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="116dp"
-        android:text="Button"
+        android:layout_width="172dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="176dp"
+        android:text="Abri mapa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/checkRes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="80dp"
-        android:text="Button"
+        android:layout_width="176dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="84dp"
+        android:text="Check"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

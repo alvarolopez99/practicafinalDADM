@@ -36,13 +36,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.example.practicafinal.Ruta.localizacionActual;
+import static com.example.practicafinal.Selector.ruta;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private static GoogleMap mMap;
+
+    public static GoogleMap mMap;
 
 
-
-
+    static Double[] ubicacionesRuta1 = {40.0,-5.0, 40.0,-4.0, 40.0,-3.0, 40.0,-2.0, 40.0,-1.0};
+    String [] ubicaciones = {"A","B","C","D","E","F"};
+    public int numUbicacion=0;
     private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno,btn_Back;
 
     private Button btn_Twitter, btn_Facebook, btn_Whatsapp;
@@ -62,6 +67,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
 
+
         btn_Satelite = (Button) findViewById(R.id.id_Satelite);
         btn_Hibrido = (Button) findViewById(R.id.id_Hibrido);
         btn_Normal = (Button) findViewById(R.id.id_Normal);
@@ -79,8 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btn_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mapa = new Intent(getApplicationContext(), Ruta.class);
-                startActivity(mapa);
+                startActivity(ruta);
             }
         });
 
@@ -89,6 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
                 //addMarker(mMap);
+                //agregarRuta1(mMap);
             }
         });
         btn_Hibrido.setOnClickListener(new View.OnClickListener() {
@@ -152,15 +158,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-    public static void agregarMarcador(double lat, double lng){
+    public static void agregarMarcador(double lat, double lng, GoogleMap googleMap){
+
 
         //final LatLng posicion = new LatLng(lat, lng);
-        //mMap.addMarker(new MarkerOptions().position(posicion));
+        //googleMap.addMarker(new MarkerOptions().position(posicion));
 
     }
 
 
-    public static void agregarRuta1(GoogleMap googleMap) {
+    public  void agregaPunto1(GoogleMap googleMap) {
 
         Polyline line = mMap.addPolyline(new PolylineOptions()
                 .add(new LatLng(42.6036635, -5.6124109), new LatLng(40.4167, -3.70256))
@@ -171,11 +178,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final LatLng punto1 = new LatLng(42.6036635, -5.6124109);
         mMap.addMarker(new MarkerOptions().position(punto1).title("León").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-        final LatLng punto2 = new LatLng(40.4167, -3.70256);
-        mMap.addMarker(new MarkerOptions().position(punto2).title("Madrid"));
+       //  final LatLng punto2 = new LatLng(40.4167, -3.70256);
+       // mMap.addMarker(new MarkerOptions().position(punto2).title("Madrid"));
 
-        final LatLng punto3 = new LatLng(40.4167, -3.50256);
-        mMap.addMarker(new MarkerOptions().position(punto3).title("Madrid"));
+       // final LatLng punto3 = new LatLng(40.4167, -3.50256);
+       // mMap.addMarker(new MarkerOptions().position(punto3).title("Madrid"));
+    }
+    public  void agregaMarcador(double lat, double lng, GoogleMap googleMap, String ubicacion) {
+
+        final LatLng posicion = new LatLng(lat, lng);
+        googleMap.addMarker(new MarkerOptions().position(posicion).title(("ubicacion " + ubicacion)));
+
+
     }
 
 
@@ -183,8 +197,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //miUbicacion();
-        //agregarRuta1(mMap);
+
+        for(int i = 0; i<(localizacionActual+2); i++){
+
+            agregaMarcador(ubicacionesRuta1[i],ubicacionesRuta1[(i+1)],mMap,ubicaciones[numUbicacion]);
+            i++;
+            numUbicacion++;
+        }
+
+
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling

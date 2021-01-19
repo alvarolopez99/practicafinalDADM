@@ -18,11 +18,13 @@ public class Selector extends AppCompatActivity implements View.OnClickListener 
     private Spinner selectorCiudades;
     private Spinner selectorRutas;
     Button start;
-
+    public static Intent ruta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selector);
+
+        ruta = new Intent(getApplicationContext(), Ruta.class);
 
         selectorPaises = findViewById(R.id.selectorPaises);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,R.array.paises, android.R.layout.simple_spinner_item);
@@ -108,8 +110,9 @@ public class Selector extends AppCompatActivity implements View.OnClickListener 
         switch(v.getId()){
 
             case R.id.start:
-                Intent ruta = new Intent(this, Ruta.class);    //Actividades
+                //Intent ruta = new Intent(this, Ruta.class);    //Actividades
                 startActivity(ruta);
+                break;
 
         }
     }
