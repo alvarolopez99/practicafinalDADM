@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import static com.example.practicafinal.MapsActivity.agregarMarcador;
 import static com.example.practicafinal.MapsActivity.mMap;
@@ -13,10 +15,16 @@ import static com.example.practicafinal.MapsActivity.mMap;
 
 public class Ruta extends AppCompatActivity implements View.OnClickListener {
 
+
+    static String[] all_questions,parts;;
     public static boolean next = false;
     public static Intent mapa;
+    public int TOTAL_QUESTIONS=5;
+    public int CURRENT_QUESTION=0;
     Button openMap;
     Button check;
+    EditText answer;
+    private TextView textQuestion;
 
     public static int localizacionActual=0;
 
@@ -26,7 +34,8 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ruta);
 
-
+        answer = (EditText) findViewById(R.id.EditText);
+        textQuestion = (TextView) findViewById(R.id.textQuestionUI);
 
         openMap = findViewById(R.id.openMap);
 
@@ -36,8 +45,16 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
 
         check.setOnClickListener(this);
 
-         mapa = new Intent(getApplicationContext(), MapsActivity.class);
-       // agregarMarcador(ubicacionesRuta1[localizacionActual],ubicacionesRuta1[(localizacionActual+1)]);
+        all_questions = getResources().getStringArray(R.array.all_questions);
+
+        mapa = new Intent(getApplicationContext(), MapsActivity.class);
+
+        String Q = all_questions[CURRENT_QUESTION];
+        parts = Q.split(";");
+        textQuestion.setText(parts[0]);
+
+
+
 
     }
 
@@ -53,7 +70,16 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.checkRes:
 
+                String respuesta = answer.getText().toString();
+
+                if(respuesta.equals(parts[1])) {
+                    CURRENT_QUESTION++;
+                    String Q = all_questions[CURRENT_QUESTION];
+                    parts = Q.split(";");
+                    textQuestion.setText(parts[0]);
                 localizacionActual = localizacionActual + 2;
+
+                }
                 break;
 
 
