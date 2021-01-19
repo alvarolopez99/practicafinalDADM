@@ -593,7 +593,7 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
 
         // Create a file in the Pictures/HelloAR album.
         final File out = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES) + "/HelloAR", "Img" +
+                Environment.DIRECTORY_PICTURES) + "/AR", "Img" +
                 Long.toHexString(System.currentTimeMillis()) + ".png");
 
         // Make sure the directory exists
@@ -616,11 +616,16 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
         Bitmap bmp = Bitmap.createBitmap(bitmapData,
                 mWidth, mHeight, Bitmap.Config.ARGB_8888);
 
-        // Write it to disk.
-        FileOutputStream fos = new FileOutputStream(out);
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        fos.flush();
-        fos.close();
+        // Write it to disk
+        try (FileOutputStream fos = new FileOutputStream(out)) {
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, fos); // bmp is your Bitmap instance
+            fos.flush();
+            fos.close();
+            // PNG is a lossless format, the compression factor (100) is ignored
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     // Handle only one tap per frame, as taps are usually low frequency compared to frame rate.
