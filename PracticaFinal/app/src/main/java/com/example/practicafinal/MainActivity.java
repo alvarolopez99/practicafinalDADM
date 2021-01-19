@@ -12,6 +12,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import android.hardware.Sensor;
@@ -30,15 +31,20 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;*/
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, SensorEventListener{
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button Escaner;
     private TextView textView;
     WebView view;
     Button btn_openMap;
-    Button iniciarSesion;
     Button btn_Temperatura;
-    Button btn_Perfiles;
+
+
+    ImageView iniciarSesion;
+    ImageView btn_Perfiles;
+
+
 
     String txtLatInicio ="4.543986";
     String txtLongInicio ="-75.666736";
@@ -69,25 +75,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //view.getSettings().setJavaScriptEnabled(true);
 
-        btn_openMap = (Button) findViewById(R.id.btn_openMap);
+        /*btn_openMap = (Button) findViewById(R.id.btn_openMap);
         btn_ar = (Button) findViewById(R.id.arbutton);
         btn_Temperatura = (Button) findViewById(R.id.btn_Temperatura);
-        iniciarSesion = (Button) findViewById(R.id.inicioSesion);
-        btn_Perfiles = (Button) findViewById(R.id.btn_Perfiles);
-        Escaner = findViewById(R.id.escaner);
+        Escaner = findViewById(R.id.escaner);*/
 
-        iniciarSesion.setOnClickListener(this);
-        btn_openMap.setOnClickListener(this);
+        iniciarSesion = (ImageView) findViewById(R.id.inicioSesion);
+        btn_Perfiles = (ImageView) findViewById(R.id.btn_Perfiles);
+
+
+
+        /*btn_openMap.setOnClickListener(this);
         Escaner.setOnClickListener(this);
         btn_ar.setOnClickListener(this);
         btn_Temperatura.setOnClickListener(this);
+        */
+
+        iniciarSesion.setOnClickListener(this);
         btn_Perfiles.setOnClickListener(this);
 
-        view = (WebView) findViewById(R.id.web);
+        //view = (WebView) findViewById(R.id.web);
 
-        Texto_Pasos = findViewById(R.id.id_Texto_Pasos);
-        textView = findViewById(R.id.id_Texto_Pasos);
-        manejadorSensor = (SensorManager) getSystemService(SENSOR_SERVICE);
+        /*Texto_Pasos = findViewById(R.id.id_Texto_Pasos);
+        /manejadorSensor = (SensorManager) getSystemService(SENSOR_SERVICE);
 
 
         if(manejadorSensor.getDefaultSensor((Sensor.TYPE_STEP_COUNTER)) != null) {
@@ -97,41 +107,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             Texto_Pasos.setText("Sensor de pasos no soportado");
-        }
+        }*/
 
 
     }
 
 
-    @Override
+    /*@Override
     public void onSensorChanged(SensorEvent event) {
         if(event.sensor == contadorPasos) {
             N_Pasos = (int) event.values[0];
             Texto_Pasos.setText(String.valueOf(N_Pasos));
         }
-    }
+    }*/
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    @Override
+    /*@Override
     public void onResume() {
         super.onResume();
         if(manejadorSensor.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null){
             manejadorSensor.registerListener(this, contadorPasos, manejadorSensor.SENSOR_DELAY_NORMAL);
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onPause() {
         super.onPause();
         if(manejadorSensor.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null){
             manejadorSensor.unregisterListener(this, contadorPasos);
         }
-    }
-
+    }*/
 
 /*
 
@@ -278,9 +282,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 */
 
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+    }
 /*
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result!=null){
@@ -301,38 +307,24 @@ view.setWebViewClient(new WebViewClient(){
         return false;
     }
 });*/
-    }
 
 
 
     @Override
     public void onClick(View v){
         switch(v.getId()){
-            case R.id.btn_openMap:
-
-
-              /*  Utilidades.coordenadas.setLatitudInicial(Double.valueOf(txtLatInicio));
-                Utilidades.coordenadas.setLongitudInicial(Double.valueOf(txtLongInicio));
-                Utilidades.coordenadas.setLatitudFinal(Double.valueOf(txtLatFinal));
-                Utilidades.coordenadas.setLongitudFinal(Double.valueOf(txtLongFinal));
-
-                webServiceObtenerRuta(txtLatInicio,txtLongInicio,txtLatFinal,txtLongFinal);
-*/
-
-               // Intent miIntent=new Intent(MainActivity.this, MapsActivity.class);
-               // startActivity(miIntent);
-
+            /*case R.id.btn_openMap:
                 Intent mapa = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(mapa);
                 break;
-
+*/
             case R.id.inicioSesion:
                 Intent Selector = new Intent(this,Selector.class);    //Actividades
                 startActivity(Selector);
                 break;
 
 
-            case R.id.escaner:
+            /*case R.id.escaner:
                 new IntentIntegrator(MainActivity.this).initiateScan();
                 break;
 
@@ -345,6 +337,7 @@ view.setWebViewClient(new WebViewClient(){
                 Intent temp = new Intent(this, Temperature.class);
                 startActivity(temp);
                 break;
+                */
             case R.id.btn_Perfiles:
                 Intent perfiles = new Intent(this, Perfiles.class);
                 startActivity(perfiles);
