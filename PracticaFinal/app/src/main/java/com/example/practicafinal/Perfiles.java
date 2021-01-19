@@ -75,9 +75,9 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
         requestPermission();
 
         this.dbManager = new DbManager(this);
-        cursor = this.dbManager.getEntriesPerfiles();
+        //cursor = this.dbManager.getEntriesPerfiles();
 
-        //this.dbManager.deleteAllPerfiles();
+        this.dbManager.deleteAllPerfiles();
 
         hasEscogido = false;
 
