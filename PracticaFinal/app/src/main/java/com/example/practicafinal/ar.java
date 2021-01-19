@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.practicafinal.common.samplerender.SampleRender;
@@ -186,6 +187,8 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
         surfaceView = findViewById(R.id.surfaceview);
         displayRotationHelper = new DisplayRotationHelper(/*context=*/ this);
 
+        ImageView photocamera = findViewById(R.id.fboRecord_button);
+        photocamera.setOnClickListener(this::onSavePicture);
         // Set up touch listener.
         tapHelper = new TapHelper(/*context=*/ this);
         surfaceView.setOnTouchListener(tapHelper);
