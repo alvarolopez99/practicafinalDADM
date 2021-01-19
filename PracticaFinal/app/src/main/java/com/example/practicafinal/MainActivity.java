@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     WebView view;
     Button btn_openMap;
     Button btn_Temperatura;
+    public static TextView tBienvenida;
 
 
     ImageView iniciarSesion;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public Item itemseleccionado;
     public static String imagen;
 
+    public static final String PREFS_NIVEL = "PreferencesFile";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +86,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         iniciarSesion = (ImageView) findViewById(R.id.inicioSesion);
         btn_Perfiles = (ImageView) findViewById(R.id.btn_Perfiles);
+        tBienvenida = (TextView) findViewById(R.id.tBienvenida);
+        if(!nombreUsuario.equalsIgnoreCase("Anónimo")){
+            tBienvenida.setText("¡Bienvenido " + nombreUsuario);
+        }
 
+        SharedPreferences savedInfo = getSharedPreferences(PREFS_NIVEL, 0);
+        nombreUsuario = savedInfo.getString("nombre", "Anónimo");
+        setNombreUsuario(nombreUsuario);
 
 
         /*btn_openMap.setOnClickListener(this);
@@ -110,6 +121,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }*/
 
 
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        SharedPreferences savedInfo = getSharedPreferences(PREFS_NIVEL, 0);
+        SharedPreferences.Editor editor = savedInfo.edit();
+        editor.putString("nombre", nombreUsuario);
     }
 
 

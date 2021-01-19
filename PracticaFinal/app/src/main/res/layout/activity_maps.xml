@@ -114,6 +114,29 @@
             map:layout_constraintStart_toStartOf="parent"
             map:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tTemperatura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="100dp"
+            android:background="#70555555"
+            android:text="0.0 ºC"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/id_Flecha"
+            android:layout_width="97dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/flecha"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

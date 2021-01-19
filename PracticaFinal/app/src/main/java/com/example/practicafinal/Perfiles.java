@@ -50,7 +50,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
     static String fotobitmap;
     String foto;
     int fotoEscogidaDefecto;
-    MainActivity mainActivity;
+    public static MainActivity mainActivity;
 
 
     final int PHOTO_RESULT=1;
@@ -72,12 +72,14 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfiles);
 
+        mainActivity = new MainActivity();
+
         requestPermission();
 
         this.dbManager = new DbManager(this);
-        //cursor = this.dbManager.getEntriesPerfiles();
+        cursor = this.dbManager.getEntriesPerfiles();
 
-        this.dbManager.deleteAllPerfiles();
+        //this.dbManager.deleteAllPerfiles();
 
         hasEscogido = false;
 
@@ -126,6 +128,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
                     mainActivity.setNumPartidas(numPartidas);
                     mainActivity.setImagen(foto);
                     mainActivity.itemseleccionado = item;
+
                 }
                 listaItems.clear();
                 finish();
@@ -272,6 +275,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
                     if (!item.getAlias().equals("")) {
                         placeholder.setText("Has seleccionado el perfil: " + item.getAlias());
                         placeholder.setVisibility(View.VISIBLE);
+                        MainActivity.tBienvenida.setText("!Bienvenido " + item.getAlias() + "!");
                     }
                 }
                 break;
@@ -436,7 +440,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
 
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(this,
-                        "com.example.prac1.fileprovider",
+                        "com.example.practicafinal.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, PHOTO_RESULT);

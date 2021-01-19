@@ -13,12 +13,20 @@ import android.content.Intent;
 
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,7 +50,7 @@ import static com.example.practicafinal.Ruta.localizacionActual;
 import static com.example.practicafinal.Selector.ruta;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, SensorEventListener {
 
 
     public static GoogleMap mMap;
@@ -59,6 +67,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lng = 0.0;
 
 
+    //Apartado temperatura
+    public TextView tTemperatura;
+    private SensorManager sensorManager;
+    private Sensor sensorTemperature;
+    private boolean isTemperatureSensorAvailable;
+
+    //Apartado brújula
+    private Button icono_Orientacion;
+    private boolean acelerometroCambiado = false;
+    private boolean magneticoCambiado = false;
+    private SensorManager manejador_Sensores;
+    private Sensor sensor_Acelerometro, sensor_Magnetico;
+    private float[] ultimos_Valores_Acelerometro;
+    private float[] ultimos_Valores_Magnetico;
+    private float[] valores_Rotacion;
+    private float[] valores_Orientacion;
+    private float rotacion_Actual = 0f;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +96,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
 
+        //region TEMPERATURA
+        tTemperatura = (TextView) findViewById(R.id.tTemperatura);
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE) != null){
+            sensorTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+            isTemperatureSensorAvailable = true;
+        } else{
+            tTemperatura.setText("Temperature sensor is not available");
+            isTemperatureSensorAvailable = false;
+        }
+        //endregion
+
+        //region BRUJULA
+        ultimos_Valores_Magnetico = new float[3];
+        ultimos_Valores_Acelerometro = new float[3];
+        valores_Orientacion = new float[3];
+        valores_Rotacion = new float[9];
+
+        icono_Orientacion = (Button) findViewById(R.id.id_Flecha);
+        manejador_Sensores = (SensorManager)getSystemService(SENSOR_SERVICE);
+        sensor_Magnetico = manejador_Sensores.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        sensor_Acelerometro = manejador_Sensores.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        //endregion
 
         btn_Satelite = (Button) findViewById(R.id.id_Satelite);
         btn_Hibrido = (Button) findViewById(R.id.id_Hibrido);
@@ -305,7 +356,63 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
          */
+    }
 
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        tTemperatura.setText(sensorEvent.values[0] + " ºC");
 
+        if (sensorEvent.sensor == sensor_Magnetico) {
+
+            System.arraycopy(sensorEvent.values, 0, ultimos_Valores_Magnetico, 0, sensorEvent.values.length);
+            magneticoCambiado = true;
+
+        } else if (sensorEvent.sensor == sensor_Acelerometro) {
+
+            System.arraycopy(sensorEvent.values, 0, ultimos_Valores_Acelerometro, 0, sensorEvent.values.length);
+            acelerometroCambiado = true;
+
+        }
+        if (acelerometroCambiado && magneticoCambiado) {
+
+            SensorManager.getRotationMatrix(valores_Rotacion, null, ultimos_Valores_Acelerometro, ultimos_Valores_Magnetico);
+            SensorManager.getOrientation(valores_Rotacion, valores_Orientacion);
+
+            float angulo_Orientacion_Radianes = valores_Orientacion[0];
+            float angulo_Orientacion_Grados = (float)(Math.toDegrees(angulo_Orientacion_Radianes)+360)%360;
+
+            RotateAnimation animacion_Rotacion = new RotateAnimation(rotacion_Actual, -angulo_Orientacion_Grados, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+
+            animacion_Rotacion.setDuration(1);
+            animacion_Rotacion.setFillAfter(true);
+
+            icono_Orientacion.startAnimation(animacion_Rotacion);
+            rotacion_Actual = -angulo_Orientacion_Grados;
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if(isTemperatureSensorAvailable){
+            sensorManager.registerListener(this, sensorTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        manejador_Sensores.registerListener(this, sensor_Acelerometro, SensorManager.SENSOR_DELAY_UI);
+        manejador_Sensores.registerListener(this, sensor_Magnetico, SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(isTemperatureSensorAvailable){
+            sensorManager.unregisterListener(this);
+        }
+        manejador_Sensores.unregisterListener(this, sensor_Magnetico);
+        manejador_Sensores.unregisterListener(this, sensor_Acelerometro);
     }
 }

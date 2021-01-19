@@ -39,7 +39,7 @@
                 android:background="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/salirxml" />
+                app:srcCompat="@drawable/exitbtn" />
 
             <TextView
                 android:id="@+id/placeholder"
