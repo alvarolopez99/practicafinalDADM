@@ -4,20 +4,25 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.opengl.GLES30;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.example.practicafinal.common.samplerender.SampleRender;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -145,7 +150,7 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
 
     private long lastPointCloudTimestamp = 0;
 
-    // Virtual object (ARCore pawn)
+    // Virtual object
     private Mesh virtualObjectMesh;
     private Shader virtualObjectShader;
     private final ArrayList<Anchor> anchors = new ArrayList<>();
@@ -164,6 +169,11 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
     private final float[] viewInverseMatrix = new float[16];
     private final float[] worldLightDirection = {0.0f, 0.0f, 0.0f, 0.0f};
     private final float[] viewLightDirection = new float[4]; // view x world light direction
+
+    //Image
+    private int mWidth;
+    private int mHeight;
+    private  boolean capturePicture = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -398,10 +408,12 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
     public void onSurfaceChanged(SampleRender render, int width, int height) {
         displayRotationHelper.onSurfaceChanged(width, height);
         virtualSceneFramebuffer.resize(width, height);
+        mWidth = width;
+        mHeight = height;
     }
 
     @Override
-    public void onDrawFrame(SampleRender render) {
+    public void onDrawFrame(SampleRender render) throws IOException {
         if (session == null) {
             return;
         }
@@ -555,6 +567,59 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
 
         // Compose the virtual scene with the background.
         backgroundRenderer.drawVirtualScene(render, virtualSceneFramebuffer, Z_NEAR, Z_FAR);
+
+        if (capturePicture) {
+            capturePicture = false;
+            SavePicture();
+        }
+    }
+
+    public void onSavePicture(View view) {
+        // Here just a set a flag so we can copy
+        // the image from the onDrawFrame() method.
+        // This is required for OpenGL so we are on the rendering thread.
+        this.capturePicture = true;
+    }
+
+    public void SavePicture() throws IOException {
+        int pixelData[] = new int[mWidth * mHeight];
+
+        // Read the pixels from the current GL frame.
+        IntBuffer buf = IntBuffer.wrap(pixelData);
+        buf.position(0);
+        GLES30.glReadPixels(0, 0, mWidth, mHeight,
+                GLES30.GL_RGBA, GLES30.GL_UNSIGNED_BYTE, buf);
+
+        // Create a file in the Pictures/HelloAR album.
+        final File out = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES) + "/HelloAR", "Img" +
+                Long.toHexString(System.currentTimeMillis()) + ".png");
+
+        // Make sure the directory exists
+        if (!out.getParentFile().exists()) {
+            out.getParentFile().mkdirs();
+        }
+
+        // Convert the pixel data from RGBA to what Android wants, ARGB.
+        int bitmapData[] = new int[pixelData.length];
+        for (int i = 0; i < mHeight; i++) {
+            for (int j = 0; j < mWidth; j++) {
+                int p = pixelData[i * mWidth + j];
+                int b = (p & 0x00ff0000) >> 16;
+                int r = (p & 0x000000ff) << 16;
+                int ga = p & 0xff00ff00;
+                bitmapData[(mHeight - i - 1) * mWidth + j] = ga | r | b;
+            }
+        }
+        // Create a bitmap.
+        Bitmap bmp = Bitmap.createBitmap(bitmapData,
+                mWidth, mHeight, Bitmap.Config.ARGB_8888);
+
+        // Write it to disk.
+        FileOutputStream fos = new FileOutputStream(out);
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        fos.flush();
+        fos.close();
     }
 
     // Handle only one tap per frame, as taps are usually low frequency compared to frame rate.
@@ -680,4 +745,6 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
         }
         session.configure(config);
     }
+
+
 }

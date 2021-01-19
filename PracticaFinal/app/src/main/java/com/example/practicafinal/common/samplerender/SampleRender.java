@@ -19,6 +19,8 @@ import android.content.res.AssetManager;
 import android.opengl.GLES30;
 import android.opengl.GLSurfaceView;
 
+import java.io.IOException;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -122,7 +124,7 @@ public class SampleRender {
      *
      * <p>See {@link GLSurfaceView.Renderer#onDrawFrame}.
      */
-    public void onDrawFrame(SampleRender render);
+    public void onDrawFrame(SampleRender render) throws IOException;
   }
 
   /* package-private */
