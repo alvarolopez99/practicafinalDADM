@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.example.practicafinal.Ruta.TOTAL_QUESTIONS;
 import static com.example.practicafinal.Ruta.localizacionActual;
 import static com.example.practicafinal.Selector.ruta;
 
@@ -198,7 +199,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        for(int i = 0; i<(localizacionActual+2); i++){
+        for(int i = 0; i<(TOTAL_QUESTIONS*2); i++){
 
             agregaMarcador(ubicacionesRuta1[i],ubicacionesRuta1[(i+1)],mMap,ubicaciones[numUbicacion]);
             i++;

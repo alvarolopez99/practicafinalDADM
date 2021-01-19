@@ -28,8 +28,8 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
     static String[] all_questions,parts;;
     public static boolean next = false;
     public static Intent mapa;
-    public int TOTAL_QUESTIONS=5;
-    public int CURRENT_QUESTION=0;
+    public static int TOTAL_QUESTIONS=5;
+    public static int CURRENT_QUESTION=0;
     private Button Escaner;
     Button openMap;
     Button check;
