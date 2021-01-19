@@ -8,66 +8,75 @@
 
     <TextView
         android:id="@+id/textLocation"
-        android:layout_width="148dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="260dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="28dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/openMap"
-        android:layout_width="172dp"
-        android:layout_height="128dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="139dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
         android:text="Abri mapa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/escaner"
+        app:layout_constraintTop_toBottomOf="@+id/webView" />
 
     <Button
         android:id="@+id/checkRes"
-        android:layout_width="176dp"
-        android:layout_height="89dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="148dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
         android:text="Check"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/EditText" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="228dp"
+        android:id="@+id/escaner"
+        android:layout_width="134dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="28dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.877"
+        app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textQuestionUI" />
+        app:layout_constraintTop_toBottomOf="@+id/webView" />
 
     <TextView
         android:id="@+id/textQuestionUI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_width="276dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.283"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLocation" />
 
     <EditText
         android:id="@+id/EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="235dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Respuesta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textQuestionUI" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="283dp"
+        android:layout_height="278dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkRes" />
 </androidx.constraintlayout.widget.ConstraintLayout>

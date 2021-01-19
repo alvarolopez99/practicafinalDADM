@@ -1,13 +1,21 @@
 package com.example.practicafinal;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import static com.example.practicafinal.MapsActivity.agregarMarcador;
 import static com.example.practicafinal.MapsActivity.mMap;
@@ -22,22 +30,35 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
     public static Intent mapa;
     public int TOTAL_QUESTIONS=5;
     public int CURRENT_QUESTION=0;
+    private Button Escaner;
     Button openMap;
     Button check;
     EditText answer;
     private TextView textQuestion;
     private TextView textLocation;
+    WebView Web;
+
 
     public static int localizacionActual=0;
     public static int rutaSeleccionada=0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ruta);
 
+        Web = (WebView) findViewById(R.id.webView);
+        Web.setWebViewClient(new WebViewClient());
+
         answer = (EditText) findViewById(R.id.EditText);
         textQuestion = (TextView) findViewById(R.id.textQuestionUI);
         textLocation = (TextView) findViewById(R.id.textLocation);
+
+        Escaner = findViewById(R.id.escaner);
+
+        Escaner.setOnClickListener(this);
 
         openMap = findViewById(R.id.openMap);
 
@@ -60,6 +81,15 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        String url = ""+result.getContents();
+        Web.loadUrl(""+url);
+
+    }
 
     @Override
     public void onClick(View v){
@@ -68,6 +98,10 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
             case R.id.openMap:
 
                 startActivity(mapa);
+                break;
+
+            case R.id.escaner:
+                new IntentIntegrator(Ruta.this).initiateScan();
                 break;
 
             case R.id.checkRes:
@@ -89,4 +123,7 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
+
+
+
 }
