@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean existeSensor;
     int N_Pasos = 0;
 
+    //AR
+    private Button btn_ar;
+
    // JsonObjectRequest jsonObjectRequest;
    // RequestQueue request;
 
@@ -60,12 +63,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //view.getSettings().setJavaScriptEnabled(true);
 
         btn_openMap = (Button) findViewById(R.id.btn_openMap);
+        btn_ar = (Button) findViewById(R.id.arbutton);
         iniciarSesion = (Button) findViewById(R.id.inicioSesion);
         Escaner = findViewById(R.id.escaner);
 
         iniciarSesion.setOnClickListener(this);
         btn_openMap.setOnClickListener(this);
         Escaner.setOnClickListener(this);
+        btn_ar.setOnClickListener(this);
 
         view = (WebView) findViewById(R.id.web);
 
@@ -335,10 +340,16 @@ view.setWebViewClient(new WebViewClient(){
             case R.id.inicioSesion:
                 Intent Selector = new Intent(this,Selector.class);    //Actividades
                 startActivity(Selector);
+                break;
 
 
             case R.id.escaner:
                 new IntentIntegrator(MainActivity.this).initiateScan();
+                break;
+
+            case R.id.arbutton:
+                Intent ar = new Intent(this,ar.class);    //Actividades
+                startActivity(ar);
                 break;
         }
     }

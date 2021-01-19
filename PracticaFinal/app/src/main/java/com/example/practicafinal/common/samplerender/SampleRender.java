@@ -64,7 +64,11 @@ public class SampleRender {
           @Override
           public void onDrawFrame(GL10 gl) {
             clear(/*framebuffer=*/ null, 0f, 0f, 0f, 1f);
-            renderer.onDrawFrame(SampleRender.this);
+            try {
+              renderer.onDrawFrame(SampleRender.this);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
           }
         });
     glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);

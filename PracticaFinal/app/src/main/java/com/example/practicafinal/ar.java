@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.opengl.GLES20;
 import android.opengl.GLES30;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
@@ -407,7 +408,7 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
     @Override
     public void onSurfaceChanged(SampleRender render, int width, int height) {
         displayRotationHelper.onSurfaceChanged(width, height);
-        virtualSceneFramebuffer.resize(width, height);
+        virtualSceneFramebuffer.resize(width, height);      //ToDo:Aqui peta
         mWidth = width;
         mHeight = height;
     }
@@ -587,8 +588,8 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
         // Read the pixels from the current GL frame.
         IntBuffer buf = IntBuffer.wrap(pixelData);
         buf.position(0);
-        GLES30.glReadPixels(0, 0, mWidth, mHeight,
-                GLES30.GL_RGBA, GLES30.GL_UNSIGNED_BYTE, buf);
+        GLES20.glReadPixels(0, 0, mWidth, mHeight,
+                GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, buf);
 
         // Create a file in the Pictures/HelloAR album.
         final File out = new File(Environment.getExternalStoragePublicDirectory(
