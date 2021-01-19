@@ -119,11 +119,13 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
                     String Q = all_questions[CURRENT_QUESTION];
                     parts = Q.split(";");
                     textQuestion.setText(parts[0]);
+                    answer.setText("");
                     localizacionActual = localizacionActual + 2;
                 }else if (CURRENT_QUESTION == TOTAL_QUESTIONS){
 
                     textLocation.setText("FINAL");
-                    //REALIDAD VIRTUAL
+                    Intent ar = new Intent(this,ar.class);    //Actividades
+                    startActivity(ar);                    //REALIDAD VIRTUAL
                 }
                 break;
         }

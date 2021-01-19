@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.example.practicafinal.Ruta.CURRENT_QUESTION;
 import static com.example.practicafinal.Ruta.TOTAL_QUESTIONS;
 import static com.example.practicafinal.Ruta.localizacionActual;
 import static com.example.practicafinal.Selector.ruta;
@@ -199,7 +200,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        for(int i = 0; i<(TOTAL_QUESTIONS*2); i++){
+        for(int i = 0; i<((CURRENT_QUESTION+1)*2); i++){
 
             agregaMarcador(ubicacionesRuta1[i],ubicacionesRuta1[(i+1)],mMap,ubicaciones[numUbicacion]);
             i++;
@@ -209,13 +210,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         mMap.setMyLocationEnabled(true);
