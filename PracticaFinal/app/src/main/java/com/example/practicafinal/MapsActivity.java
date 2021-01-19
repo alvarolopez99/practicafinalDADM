@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     static Double[] ubicacionesRuta1 = {40.0,-5.0, 40.0,-4.0, 40.0,-3.0, 40.0,-2.0, 40.0,-1.0};
-    String [] ubicaciones = {"A","B","C","D","E","F"};
+    public static String [] ubicaciones = {"A","B","C","D","E","F"};
     public int numUbicacion=0;
     private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno,btn_Back;
 

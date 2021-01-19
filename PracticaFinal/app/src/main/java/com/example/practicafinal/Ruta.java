@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import static com.example.practicafinal.MapsActivity.agregarMarcador;
 import static com.example.practicafinal.MapsActivity.mMap;
+import static com.example.practicafinal.MapsActivity.ubicaciones;
 
 
 public class Ruta extends AppCompatActivity implements View.OnClickListener {
@@ -25,9 +26,9 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
     Button check;
     EditText answer;
     private TextView textQuestion;
+    private TextView textLocation;
 
     public static int localizacionActual=0;
-
     public static int rutaSeleccionada=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
 
         answer = (EditText) findViewById(R.id.EditText);
         textQuestion = (TextView) findViewById(R.id.textQuestionUI);
+        textLocation = (TextView) findViewById(R.id.textLocation);
 
         openMap = findViewById(R.id.openMap);
 
@@ -52,7 +54,7 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
         String Q = all_questions[CURRENT_QUESTION];
         parts = Q.split(";");
         textQuestion.setText(parts[0]);
-
+        textLocation.setText("LOCALIZACIÓN "+ubicaciones[CURRENT_QUESTION]);
 
 
 
@@ -72,17 +74,19 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
 
                 String respuesta = answer.getText().toString();
 
-                if(respuesta.equals(parts[1])) {
-                    CURRENT_QUESTION++;
+                CURRENT_QUESTION++;
+                if(respuesta.equals(parts[1])&&CURRENT_QUESTION<TOTAL_QUESTIONS) {
+                    textLocation.setText("LOCALIZACIÓN "+ubicaciones[CURRENT_QUESTION]);
                     String Q = all_questions[CURRENT_QUESTION];
                     parts = Q.split(";");
                     textQuestion.setText(parts[0]);
-                localizacionActual = localizacionActual + 2;
+                    localizacionActual = localizacionActual + 2;
+                }else if (CURRENT_QUESTION == TOTAL_QUESTIONS){
 
+                    textLocation.setText("FINAL");
+                    //REALIDAD VIRTUAL
                 }
                 break;
-
-
         }
     }
 }

@@ -7,7 +7,7 @@
     tools:context=".Ruta">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textLocation"
         android:layout_width="148dp"
         android:layout_height="94dp"
         android:layout_marginTop="92dp"
@@ -35,7 +35,7 @@
         android:layout_marginTop="96dp"
         android:text="Check"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textLocation" />
 
     <Button
         android:id="@+id/button"
@@ -52,22 +52,22 @@
         android:id="@+id/textQuestionUI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="52dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.283"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textLocation" />
 
     <EditText
         android:id="@+id/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Respuesta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkRes" />
 </androidx.constraintlayout.widget.ConstraintLayout>
