@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.opengl.GLES20;
@@ -99,6 +100,8 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
 
     private static final String SEARCHING_PLANE_MESSAGE = "Searching for surfaces...";
     private static final String WAITING_FOR_TAP_MESSAGE = "Tap on a surface to place an object.";
+
+    public static File imagePath;
 
     // See the definition of updateSphericalHarmonicsCoefficients for an explanation of these
     // constants.
@@ -373,13 +376,13 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
             Texture virtualObjectAlbedoTexture =
                     Texture.createFromAsset(
                             render,
-                            "models/Slime_texture.png",   //ToDo: Texturas
+                            "models/textura.png",
                             Texture.WrapMode.CLAMP_TO_EDGE,
                             Texture.ColorFormat.SRGB);
       /*Texture virtualObjectPbrTexture =
           Texture.createFromAsset(
               render,
-              "models/pawn_roughness_metallic_ao.png",  //ToDO: Texturas
+              "models/pawn_roughness_metallic_ao.png",
               Texture.WrapMode.CLAMP_TO_EDGE,
               Texture.ColorFormat.LINEAR);*/
             virtualObjectMesh = Mesh.createFromAsset(render, "models/model.obj");  //ToDo:Aqui se cambia el obj
@@ -596,6 +599,8 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
                 Environment.DIRECTORY_PICTURES) + "/AR", "Img" +
                 Long.toHexString(System.currentTimeMillis()) + ".png");
 
+        imagePath = out;
+
         // Make sure the directory exists
         if (!out.getParentFile().exists()) {
             out.getParentFile().mkdirs();
@@ -621,6 +626,9 @@ public class ar extends AppCompatActivity implements SampleRender.Renderer {
             bmp.compress(Bitmap.CompressFormat.PNG, 100, fos); // bmp is your Bitmap instance
             fos.flush();
             fos.close();
+
+            Intent p = new Intent(this,showPhoto.class);    //Actividades
+            startActivity(p);
             // PNG is a lossless format, the compression factor (100) is ignored
         } catch (IOException e) {
             e.printStackTrace();
