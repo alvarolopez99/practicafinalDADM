@@ -14,12 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
-/*
+
 public class showPhoto extends AppCompatActivity {
 
     ImageView photo;
     Uri uri;
-    private Button btn_Twitter, btn_Facebook, btn_Whatsapp, btn_menu;
+    private ImageView btn_Twitter, btn_Facebook, btn_Whatsapp, btn_menu;
     Intent menuI;
 
     @Override
@@ -34,10 +34,10 @@ public class showPhoto extends AppCompatActivity {
         Bitmap bmp = BitmapFactory.decodeFile(ar.imagePath.toString());
         photo.setImageBitmap(bmp);
 
-        btn_Twitter = (Button) findViewById(R.id.id_Twitter2);
-        btn_Facebook = (Button) findViewById(R.id.id_Facebook2);
-        btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp2);
-        btn_menu = (Button) findViewById(R.id.menubtn);
+        btn_Twitter = (ImageView) findViewById(R.id.id_Twitter2);
+        btn_Facebook = (ImageView) findViewById(R.id.id_Facebook2);
+        btn_Whatsapp = (ImageView) findViewById(R.id.id_Whatsapp2);
+        btn_menu = (ImageView) findViewById(R.id.menubtn);
 
         uri = Uri.parse(ar.imagePath.toString());
 
@@ -89,4 +89,4 @@ public class showPhoto extends AppCompatActivity {
 
     }
 
-}*/
+}
