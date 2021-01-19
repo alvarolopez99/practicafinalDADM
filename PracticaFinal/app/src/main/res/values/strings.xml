@@ -12,4 +12,19 @@
     </string-array>
 
 
+
+
+    <array name="all_question">
+
+        <item>¿Desde qué año está protegido el parque del Retiro?;1935</item>
+        <item>¿A qué dios del Olimpo introdujo la diosa Cibeles en su culto misterioso?;Dioniso</item>
+        <item>¿De quién es la estatua ecuestre que está en la plaza?;Carlos III</item>
+        <item>¿En qué año se colocó en el centro de la plaza la estatua de Isabel II?;1868</item>
+        <item>¿Qué noble italiano seleccionó a los artistas para la decoración del salón del trono?;Felice Gazzola</item>
+
+    </array>
+
+
+
+
 </resources>
