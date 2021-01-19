@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     WebView view;
     Button btn_openMap;
     Button iniciarSesion;
+    Button btn_Temperatura;
 
     String txtLatInicio ="4.543986";
     String txtLongInicio ="-75.666736";
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_openMap = (Button) findViewById(R.id.btn_openMap);
         btn_ar = (Button) findViewById(R.id.arbutton);
+        btn_Temperatura = (Button) findViewById(R.id.btn_Temperatura);
         iniciarSesion = (Button) findViewById(R.id.inicioSesion);
         Escaner = findViewById(R.id.escaner);
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_openMap.setOnClickListener(this);
         Escaner.setOnClickListener(this);
         btn_ar.setOnClickListener(this);
+        btn_Temperatura.setOnClickListener(this);
 
         view = (WebView) findViewById(R.id.web);
 
@@ -350,6 +353,11 @@ view.setWebViewClient(new WebViewClient(){
             case R.id.arbutton:
                 Intent ar = new Intent(this,ar.class);    //Actividades
                 startActivity(ar);
+                break;
+
+            case R.id.btn_Temperatura:
+                Intent temp = new Intent(this, Temperature.class);
+                startActivity(temp);
                 break;
         }
     }
