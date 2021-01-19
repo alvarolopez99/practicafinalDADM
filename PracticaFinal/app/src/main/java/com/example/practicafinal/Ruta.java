@@ -52,6 +52,9 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
         Web = (WebView) findViewById(R.id.webView);
         Web.setWebViewClient(new WebViewClient());
 
+        WebSettings webSettings = Web.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
         answer = (EditText) findViewById(R.id.EditText);
         textQuestion = (TextView) findViewById(R.id.textQuestionUI);
         textLocation = (TextView) findViewById(R.id.textLocation);
