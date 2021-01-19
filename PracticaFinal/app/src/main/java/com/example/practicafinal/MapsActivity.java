@@ -39,11 +39,11 @@ import java.util.List;
 import static com.example.practicafinal.Ruta.localizacionActual;
 import static com.example.practicafinal.Selector.ruta;
 
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
 
     public static GoogleMap mMap;
-
 
     static Double[] ubicacionesRuta1 = {40.0,-5.0, 40.0,-4.0, 40.0,-3.0, 40.0,-2.0, 40.0,-1.0};
     public static String [] ubicaciones = {"A","B","C","D","E","F"};
@@ -126,7 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "¡Comparte tu experiencia en Twitter!");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡Únete a mi búsqueda de Scan It! Nos vemos en las coordenadas "+ubicacionesRuta1[localizacionActual*2]+", "+ubicacionesRuta1[localizacionActual*2+1]);
                 intent.setPackage("com.twitter.android");
                 startActivity(Intent.createChooser(intent, "Compartir..."));
             }
@@ -137,7 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "¡Comparte tu experiencia en Facebook!");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡Únete a mi búsqueda de Scan It! Nos vemos en las coordenadas "+ubicacionesRuta1[localizacionActual*2]+", "+ubicacionesRuta1[localizacionActual*2+1]);
                 intent.setPackage("com.facebook.katana");
                 startActivity(Intent.createChooser(intent, "Compartir..."));
             }
@@ -148,7 +148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "¡Comparte tu experiencia en WhatsApp!");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡Únete a mi búsqueda de Scan It! Nos vemos en las coordenadas "+ubicacionesRuta1[localizacionActual*2]+", "+ubicacionesRuta1[localizacionActual*2+1]);
                 intent.setPackage("com.whatsapp");
                 startActivity(Intent.createChooser(intent, "Compartir..."));
             }
@@ -311,16 +311,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
          */
 
+
     }
-
-
-
-
-
-
-
-
-
-
-
 }
