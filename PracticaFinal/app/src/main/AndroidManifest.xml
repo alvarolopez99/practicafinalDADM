@@ -50,7 +50,6 @@
         <activity android:name=".showPhoto"></activity>
         <activity android:name=".Ruta" />
         <activity android:name=".Selector" />
-        <activity android:name=".MenuPrincipal" />
         <activity android:name=".Temperature"/>
         <activity android:name=".ar" />
         <activity android:name=".Perfiles"/>

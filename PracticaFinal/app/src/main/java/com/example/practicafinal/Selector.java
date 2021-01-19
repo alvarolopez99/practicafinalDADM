@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import static com.example.practicafinal.Ruta.rutaSeleccionada;
@@ -17,7 +18,7 @@ public class Selector extends AppCompatActivity implements View.OnClickListener 
     private Spinner selectorPaises;
     private Spinner selectorCiudades;
     private Spinner selectorRutas;
-    Button start;
+    ImageView start;
     public static Intent ruta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class Selector extends AppCompatActivity implements View.OnClickListener 
 
 
         selectorRutas = findViewById(R.id.selectorRutas);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,R.array.rutas, android.R.layout.simple_spinner_item);
+        selectorRutas.setAdapter(adapter3);
 
 
 
@@ -94,23 +97,12 @@ public class Selector extends AppCompatActivity implements View.OnClickListener 
 
             }
         });
-
-
-
-
-
-
-
     }
-
-
-
     @Override
     public void onClick(View v){
         switch(v.getId()){
 
             case R.id.start:
-                //Intent ruta = new Intent(this, Ruta.class);    //Actividades
                 startActivity(ruta);
                 break;
 
