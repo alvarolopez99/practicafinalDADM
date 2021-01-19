@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -30,9 +32,9 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
     public static Intent mapa;
     public static int TOTAL_QUESTIONS=5;
     public static int CURRENT_QUESTION=0;
-    private Button Escaner;
-    Button openMap;
-    Button check;
+    private ImageView Escaner;
+    ImageView openMap;
+    ImageView check;
     EditText answer;
     private TextView textQuestion;
     private TextView textLocation;

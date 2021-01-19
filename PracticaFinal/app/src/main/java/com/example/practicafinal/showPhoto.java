@@ -46,7 +46,7 @@ public class showPhoto extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "¡He completado la ruta demo de *NOMBREAPP*!");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡He completado la ruta demo de Scan It!");
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 intent.setType("image/png");
                 intent.setPackage("com.twitter.android");
@@ -59,7 +59,7 @@ public class showPhoto extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "¡He completado la ruta demo de *NOMBREAPP*!");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡He completado la ruta demo de Scan It!");
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 intent.setType("image/png");
                 intent.setPackage("com.facebook.katana");
@@ -72,7 +72,7 @@ public class showPhoto extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "¡He completado la ruta demo de *NOMBREAPP*!");
+                intent.putExtra(Intent.EXTRA_TEXT, "¡He completado la ruta demo de Scan It!");
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 intent.setType("image/png");
                 intent.setPackage("com.whatsapp");
