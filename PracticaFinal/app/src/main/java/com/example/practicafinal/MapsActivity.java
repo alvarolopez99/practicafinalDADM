@@ -38,11 +38,12 @@ import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    private static GoogleMap mMap;
 
 
 
-    private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno;
+
+    private Button btn_Satelite, btn_Hibrido, btn_Normal, btn_Terreno,btn_Back;
 
     private Button btn_Twitter, btn_Facebook, btn_Whatsapp;
 
@@ -71,33 +72,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        btn_Facebook = (Button) findViewById(R.id.id_Facebook);
        btn_Whatsapp = (Button) findViewById(R.id.id_WhatsApp);
 
+        btn_Back = (Button) findViewById(R.id.id_Back);
+
+
+
+        btn_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapa = new Intent(getApplicationContext(), Ruta.class);
+                startActivity(mapa);
+            }
+        });
 
         btn_Satelite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                addMarker(mMap);
+                //addMarker(mMap);
             }
         });
         btn_Hibrido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                addMarker(mMap);
+                //addMarker(mMap);
             }
         });
         btn_Normal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                addMarker(mMap);
+                //addMarker(mMap);
             }
         });
         btn_Terreno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                addMarker(mMap);
+                //addMarker(mMap);
             }
         });
 
@@ -138,7 +150,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public void addMarker(GoogleMap googleMap) {
+
+
+    public static void agregarMarcador(double lat, double lng){
+
+        //final LatLng posicion = new LatLng(lat, lng);
+        //mMap.addMarker(new MarkerOptions().position(posicion));
+
+    }
+
+
+    public static void agregarRuta1(GoogleMap googleMap) {
 
         Polyline line = mMap.addPolyline(new PolylineOptions()
                 .add(new LatLng(42.6036635, -5.6124109), new LatLng(40.4167, -3.70256))
@@ -154,106 +176,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         final LatLng punto3 = new LatLng(40.4167, -3.50256);
         mMap.addMarker(new MarkerOptions().position(punto3).title("Madrid"));
-
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-
-    /*
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }*/
-    public void agregarMarcador(double lat, double lng) {
-
-        LatLng coordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
-
-        if (marcador != null) {
-
-            marcador.remove();
-            marcador = mMap.addMarker(new MarkerOptions().position(coordenadas).title("Miposicion"));
-
-            mMap.animateCamera(miUbicacion);
-
-        }
-    }
-
-    private void actualizarUbicacion(Location location) {
-
-        if (location != null) {
-
-            lat = location.getLatitude();
-            lng = location.getLongitude();
-            agregarMarcador(lat, lng);
-
-        }
-
-    }
-
-
-    LocationListener locListener = new LocationListener() {
-
-        @Override
-        public void onLocationChanged(@NonNull Location location) {
-            actualizarUbicacion(location);
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-
-    };
-
-
-    private void miUbicacion() {
-
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        actualizarUbicacion(location);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0, locListener);
-    }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         //miUbicacion();
+        //agregarRuta1(mMap);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling

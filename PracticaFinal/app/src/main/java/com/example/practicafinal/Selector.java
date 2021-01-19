@@ -2,19 +2,22 @@ package com.example.practicafinal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-public class Selector extends AppCompatActivity {
+import static com.example.practicafinal.Ruta.rutaSeleccionada;
+
+public class Selector extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner selectorPaises;
     private Spinner selectorCiudades;
     private Spinner selectorRutas;
-
+    Button start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,13 @@ public class Selector extends AppCompatActivity {
 
 
         selectorRutas = findViewById(R.id.selectorRutas);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,R.array.rutas, android.R.layout.simple_spinner_item);
-        selectorRutas.setAdapter(adapter3);
+
+
+
+
+        start = findViewById(R.id.start);
+
+        start.setOnClickListener(this);
 
 
 
@@ -42,10 +50,6 @@ public class Selector extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
 
                 if(position==0){
-
-                }else if(position==1){
-
-                }else if(position==2){
 
                 }
 
@@ -63,10 +67,6 @@ public class Selector extends AppCompatActivity {
 
                 if(position==0){
 
-                }else if(position==1){
-
-                }else if(position==2){
-
                 }
 
             }
@@ -82,11 +82,7 @@ public class Selector extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
 
                 if(position==0){
-
-                }else if(position==1){
-
-                }else if(position==2){
-
+                    rutaSeleccionada=0;
                 }
 
             }
@@ -106,4 +102,15 @@ public class Selector extends AppCompatActivity {
     }
 
 
+
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+
+            case R.id.start:
+                Intent ruta = new Intent(this, Ruta.class);    //Actividades
+                startActivity(ruta);
+
+        }
+    }
 }
