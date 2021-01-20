@@ -271,7 +271,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
                     if (!item.getAlias().equals("")) {
                         placeholder.setText("Has seleccionado el perfil: " + item.getAlias());
                         placeholder.setVisibility(View.VISIBLE);
-                        MainActivity.tBienvenida.setText("!Bienvenido " + item.getAlias() + "!");
+                        MainActivity.tBienvenida.setText("¡Bienvenido " + item.getAlias() + "!");
                     }
                 }
                 break;
