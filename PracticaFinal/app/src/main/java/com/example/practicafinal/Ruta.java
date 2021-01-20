@@ -113,15 +113,18 @@ public class Ruta extends AppCompatActivity implements View.OnClickListener {
 
                 String respuesta = answer.getText().toString();
 
-                CURRENT_QUESTION++;
-                if(respuesta.equals(parts[1])&&CURRENT_QUESTION<TOTAL_QUESTIONS) {
-                    textLocation.setText("LOCALIZACIÓN "+ubicaciones[CURRENT_QUESTION]);
-                    String Q = all_questions[CURRENT_QUESTION];
-                    parts = Q.split(";");
-                    textQuestion.setText(parts[0]);
-                    answer.setText("");
-                    localizacionActual = localizacionActual + 2;
-                }else if (CURRENT_QUESTION == TOTAL_QUESTIONS){
+                if(respuesta.equalsIgnoreCase(parts[1])&&CURRENT_QUESTION<TOTAL_QUESTIONS) {
+                    CURRENT_QUESTION++;
+                    if(CURRENT_QUESTION<TOTAL_QUESTIONS) {
+                        textLocation.setText("LOCALIZACIÓN " + ubicaciones[CURRENT_QUESTION]);
+                        String Q = all_questions[CURRENT_QUESTION];
+                        parts = Q.split(";");
+                        textQuestion.setText(parts[0]);
+                        answer.setText("");
+                        localizacionActual = localizacionActual + 2;
+                    }
+                }
+                else if (CURRENT_QUESTION == TOTAL_QUESTIONS){
 
                     textLocation.setText("FINAL");
                     Intent ar = new Intent(this,ar.class);    //Actividades
