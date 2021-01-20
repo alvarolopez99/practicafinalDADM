@@ -6,17 +6,11 @@ public class Item {
 
     private Bitmap fotoPerfil;
     private String alias;
-    private String fechaUltima;
-    private int maxAciertos;
-    private int numPartidas;
     private String fotoString;
 
-    public Item(Bitmap fotoPerfil, String alias, String fechaUltima, int maxAciertos, int numPartidas, String fotoString){
+    public Item(Bitmap fotoPerfil, String alias, String fotoString){
         this.fotoPerfil = fotoPerfil;
         this.alias = alias;
-        this.fechaUltima = fechaUltima;
-        this.maxAciertos = maxAciertos;
-        this.numPartidas = numPartidas;
         this.fotoString = fotoString;
     }
 
@@ -34,30 +28,6 @@ public class Item {
 
     public void setAlias(String alias) {
         this.alias = alias;
-    }
-
-    public String getFechaUltima() {
-        return fechaUltima;
-    }
-
-    public void setFechaUltima(String fechaUltima) {
-        this.fechaUltima = fechaUltima;
-    }
-
-    public int getMaxAciertos() {
-        return maxAciertos;
-    }
-
-    public void setMaxAciertos(int maxAciertos) {
-        this.maxAciertos = maxAciertos;
-    }
-
-    public int getNumPartidas() {
-        return numPartidas;
-    }
-
-    public void setNumPartidas(int numPartidas) {
-        this.numPartidas = numPartidas;
     }
 
     public String getFotoString() {

@@ -45,15 +45,9 @@ public class Adaptador extends BaseAdapter {
         convertView = LayoutInflater.from(context).inflate(R.layout.item, null);
         fotoPerfil = (ImageView) convertView.findViewById(R.id.foto);
         alias = (TextView) convertView.findViewById(R.id.alias);
-        fechaUltima = (TextView) convertView.findViewById(R.id.fechaUltima);
-        numPartidas = (TextView) convertView.findViewById(R.id.numPartidas);
-        maxAciertos = (TextView) convertView.findViewById(R.id.maxAciertos);
 
         fotoPerfil.setImageBitmap(item.getFotoPerfil());
         alias.setText(item.getAlias());
-        fechaUltima.setText(item.getFechaUltima());
-        numPartidas.setText(Integer.toString(item.getNumPartidas()));
-        maxAciertos.setText(Integer.toString(item.getMaxAciertos()));
 
         return convertView;
     }

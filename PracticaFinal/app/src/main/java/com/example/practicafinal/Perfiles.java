@@ -121,11 +121,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
                 if(item != null){
                     foto = item.getFotoString();
                     nombre = item.getAlias();
-                    maxAciertos = item.getMaxAciertos();
-                    numPartidas = item.getNumPartidas();
                     mainActivity.setNombreUsuario(nombre);
-                    mainActivity.setMaxAciertos(maxAciertos);
-                    mainActivity.setNumPartidas(numPartidas);
                     mainActivity.setImagen(foto);
                     mainActivity.itemseleccionado = item;
 
@@ -177,7 +173,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
                                     }
                                 }
                                 if(!encontrado && hasEscogido && !aux.equals("")) {
-                                    listaItems.add(new Item(bm, aux, null, 0, 0, fotobitmap));
+                                    listaItems.add(new Item(bm, aux, fotobitmap));
                                     this.dbManager.insertEntryPerfiles(fotobitmap, aux, null, 0, 0);
                                     adapter = new Adaptador(GetArrayItems(), context);
                                     listview.setAdapter(adapter);
@@ -315,12 +311,12 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
                                 @Override
                                 public void onClick(View v) {
                                     String alias = item.getAlias();
-                                    String fu = item.getFechaUltima();
-                                    int ma = item.getMaxAciertos();
-                                    int nps = item.getNumPartidas();
+                                    String fu = "";
+                                    int ma = 0;
+                                    int nps =0;
                                     listaItems.remove(item);
                                     this.dbManager.deletePerfilesRow(alias);
-                                    listaItems.add(new Item(bm, alias, fu, ma, nps, fotobitmap));
+                                    listaItems.add(new Item(bm, alias, fotobitmap));
                                     this.dbManager.insertEntryPerfiles(fotobitmap, alias, fu, ma, nps);
                                     adapter = new Adaptador(GetArrayItems(), context);
                                     listview.setAdapter(adapter);
@@ -385,7 +381,7 @@ public class Perfiles extends AppCompatActivity implements View.OnClickListener 
             String lastdate = cursor.getString(cursor.getColumnIndex("fechaultima"));
             int maxaciertos = cursor.getInt(cursor.getColumnIndex("maxaciertos"));
             int numpartidas = cursor.getInt(cursor.getColumnIndex("numpartidas"));
-            listaItems.add(new Item(bitmap, alias, lastdate, maxaciertos, numpartidas, photo));
+            listaItems.add(new Item(bitmap, alias, photo));
             i++;
         }
         adapter = new Adaptador(GetArrayItems(), context);
