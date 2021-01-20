@@ -167,9 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //Este método PARSEA el JSONObject que retorna del API de Rutas de Google devolviendo
-                //una lista del lista de HashMap Strings con el listado de Coordenadas de Lat y Long,
-                //con la cual se podrá dibujar pollinas que describan la ruta entre 2 puntos.
+
                 JSONArray jRoutes = null;
                 JSONArray jLegs = null;
                 JSONArray jSteps = null;
@@ -223,9 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public List<List<HashMap<String,String>>> parse(JSONObject jObject){
-        //Este método PARSEA el JSONObject que retorna del API de Rutas de Google devolviendo
-        //una lista del lista de HashMap Strings con el listado de Coordenadas de Lat y Long,
-        //con la cual se podrá dibujar pollinas que describan la ruta entre 2 puntos.
+       
         JSONArray jRoutes = null;
         JSONArray jLegs = null;
         JSONArray jSteps = null;
