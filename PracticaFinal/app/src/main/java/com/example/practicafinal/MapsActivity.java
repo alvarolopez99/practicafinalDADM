@@ -104,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             sensorTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
             isTemperatureSensorAvailable = true;
         } else{
-            tTemperatura.setText("Temperature sensor is not available");
+            tTemperatura.setText("0.00ºC");
             isTemperatureSensorAvailable = false;
         }
         //endregion
@@ -366,7 +366,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        tTemperatura.setText(sensorEvent.values[0] + " ºC");
+
+        if (sensorEvent.sensor == sensorTemperature) {
+            tTemperatura.setText(String.format("%.2f", sensorEvent.values[0]) + " ºC");
+        }
 
         if (sensorEvent.sensor == sensor_Magnetico) {
 
